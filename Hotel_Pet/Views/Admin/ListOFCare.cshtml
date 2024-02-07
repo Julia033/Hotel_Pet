@@ -1,0 +1,35 @@
+﻿@model List<Hotel_Pet.Models.Care>
+
+<h2>Список услуг</h2>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th class="text-center">Наименование</th>
+            <th class="text-center">Цена</th>
+            <th class="text-center"></th>
+            <th class="text-center"></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var care in Model)
+        {
+            <tr class="text-center">
+                <td>@care.Type</td>
+                <td>@care.Price рублей</td>
+                <td>@Html.ActionLink("Изменить", "EditCare", new { controller = "Admin", care_id = care.ID_care }, null)</td>
+                <td>@Html.ActionLink("Удалить", "DeleteCare", new { controller = "Admin", care_id = care.ID_care }, null)</td>
+            </tr>
+
+        }
+
+    </tbody>
+</table>
+<div>
+    <br />
+    @Html.ActionLink("Назад", "Choice")
+</div>
+
+
+
+

@@ -1,0 +1,165 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Хранилище Nazarenko_IDZModelContainer" CdmEntityContainer="Nazarenko_IDZEntities">
+    <EntitySetMapping Name="Cares">
+      <EntityTypeMapping TypeName="Nazarenko_IDZModel.Care">
+        <MappingFragment StoreEntitySet="Cares">
+          <ScalarProperty Name="ID_care" ColumnName="ID_care" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Customers">
+      <EntityTypeMapping TypeName="Nazarenko_IDZModel.Customer">
+        <MappingFragment StoreEntitySet="Customers">
+          <ScalarProperty Name="ID_customer" ColumnName="ID_customer" />
+          <ScalarProperty Name="Last_name" ColumnName="Last_name" />
+          <ScalarProperty Name="First_name" ColumnName="First_name" />
+          <ScalarProperty Name="Patronymic" ColumnName="Patronymic" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="Amount_deposited" ColumnName="Amount_deposited" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Employees">
+      <EntityTypeMapping TypeName="Nazarenko_IDZModel.Employee">
+        <MappingFragment StoreEntitySet="Employees">
+          <ScalarProperty Name="ID_emp" ColumnName="ID_emp" />
+          <ScalarProperty Name="Last_name" ColumnName="Last_name" />
+          <ScalarProperty Name="First_name" ColumnName="First_name" />
+          <ScalarProperty Name="Patronymic" ColumnName="Patronymic" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Habitations">
+      <EntityTypeMapping TypeName="Nazarenko_IDZModel.Habitation">
+        <MappingFragment StoreEntitySet="Habitation">
+          <ScalarProperty Name="ID_list" ColumnName="ID_list" />
+          <ScalarProperty Name="Date_arrival" ColumnName="Date_arrival" />
+          <ScalarProperty Name="Date_leaving" ColumnName="Date_leaving" />
+          <ScalarProperty Name="ID_pet" ColumnName="ID_pet" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Journals">
+      <EntityTypeMapping TypeName="Nazarenko_IDZModel.Journal">
+        <MappingFragment StoreEntitySet="Journal">
+          <ScalarProperty Name="ID_pet" ColumnName="ID_pet" />
+          <ScalarProperty Name="ID_care" ColumnName="ID_care" />
+          <ScalarProperty Name="Date_care" ColumnName="Date_care" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Pets">
+      <EntityTypeMapping TypeName="Nazarenko_IDZModel.Pet">
+        <MappingFragment StoreEntitySet="Pets">
+          <ScalarProperty Name="ID_pet" ColumnName="ID_pet" />
+          <ScalarProperty Name="Nickname" ColumnName="Nickname" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="ID_customer" ColumnName="ID_customer" />
+          <ScalarProperty Name="Number_room" ColumnName="Number_room" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Rooms">
+      <EntityTypeMapping TypeName="Nazarenko_IDZModel.Room">
+        <MappingFragment StoreEntitySet="Rooms">
+          <ScalarProperty Name="Number_room" ColumnName="Number_room" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Titles">
+      <EntityTypeMapping TypeName="Nazarenko_IDZModel.Title">
+        <MappingFragment StoreEntitySet="Titles">
+          <ScalarProperty Name="ID_title" ColumnName="ID_title" />
+          <ScalarProperty Name="Title1" ColumnName="Title" />
+          <ScalarProperty Name="Salary" ColumnName="Salary" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="Cares_Emp" TypeName="Nazarenko_IDZModel.Cares_Emp" StoreEntitySet="Cares_Emp">
+      <EndProperty Name="Cares">
+        <ScalarProperty Name="ID_care" ColumnName="ID_care" />
+      </EndProperty>
+      <EndProperty Name="Employees">
+        <ScalarProperty Name="ID_emp" ColumnName="ID_emp" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="Cares_Titles" TypeName="Nazarenko_IDZModel.Cares_Titles" StoreEntitySet="Cares_Titles">
+      <EndProperty Name="Cares">
+        <ScalarProperty Name="ID_care" ColumnName="ID_care" />
+      </EndProperty>
+      <EndProperty Name="Titles">
+        <ScalarProperty Name="ID_title" ColumnName="ID_title" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="Emp_Titles" TypeName="Nazarenko_IDZModel.Emp_Titles" StoreEntitySet="Emp_Titles">
+      <EndProperty Name="Employees">
+        <ScalarProperty Name="ID_emp" ColumnName="ID_emp" />
+      </EndProperty>
+      <EndProperty Name="Titles">
+        <ScalarProperty Name="ID_title" ColumnName="ID_title" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <FunctionImportMapping FunctionImportName="Output_pet" FunctionName="Хранилище Nazarenko_IDZModel.Output_pet">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="Nazarenko_IDZModel.Output_pet_Result">
+          <ScalarProperty Name="Кличка_питомца" ColumnName="Кличка питомца" />
+          <ScalarProperty Name="Владелец" ColumnName="Владелец" />
+          <ScalarProperty Name="Номер_комнаты_проживания" ColumnName="Номер комнаты проживания" />
+          <ScalarProperty Name="Оказанная_услуга" ColumnName="Оказанная услуга" />
+          <ScalarProperty Name="Дата_оказания_услуги" ColumnName="Дата оказания услуги" />
+          <ScalarProperty Name="Сотрудник" ColumnName="Сотрудник" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="Update_date_leaving" FunctionName="Хранилище Nazarenko_IDZModel.Update_date_leaving" />
+    <FunctionImportMapping FunctionImportName="UpdateAmountDeposited" FunctionName="Хранилище Nazarenko_IDZModel.UpdateAmountDeposited" />
+    <EntitySetMapping Name="Roles">
+      <EntityTypeMapping TypeName="Nazarenko_IDZModel.Role">
+        <MappingFragment StoreEntitySet="Role">
+          <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+          <ScalarProperty Name="RoleCode" ColumnName="RoleCode" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="Nazarenko_IDZModel.User">
+        <MappingFragment StoreEntitySet="User">
+          <ScalarProperty Name="UserRole" ColumnName="UserRole" />
+          <ScalarProperty Name="Salt" ColumnName="Salt" />
+          <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+          <ScalarProperty Name="Login" ColumnName="Login" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CustomerPayments">
+      <EntityTypeMapping TypeName="Nazarenko_IDZModel.CustomerPayment">
+        <MappingFragment StoreEntitySet="CustomerPayments">
+          <ScalarProperty Name="Осталось_внести" ColumnName="Осталось внести" />
+          <ScalarProperty Name="Внесенная_сумма" ColumnName="Внесенная сумма" />
+          <ScalarProperty Name="Итоговая_стоимость" ColumnName="Итоговая стоимость" />
+          <ScalarProperty Name="Отчество" ColumnName="Отчество" />
+          <ScalarProperty Name="Имя" ColumnName="Имя" />
+          <ScalarProperty Name="Фамилия" ColumnName="Фамилия" />
+          <ScalarProperty Name="ID_владельца" ColumnName="ID владельца" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Information_pet">
+      <EntityTypeMapping TypeName="Nazarenko_IDZModel.Information_pet">
+        <MappingFragment StoreEntitySet="Information_pet">
+          <ScalarProperty Name="Сотрудник" ColumnName="Сотрудник" />
+          <ScalarProperty Name="Оказанная_услуга" ColumnName="Оказанная услуга" />
+          <ScalarProperty Name="Дата_заезда" ColumnName="Дата заезда" />
+          <ScalarProperty Name="Номер_комнаты_проживания" ColumnName="Номер комнаты проживания" />
+          <ScalarProperty Name="Кличка_питомца" ColumnName="Кличка питомца" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

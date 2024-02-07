@@ -1,0 +1,39 @@
+﻿@model Hotel_Pet.Models.ViewModel.CareVM
+
+<h2>Изменить услугу</h2>
+
+@using (Html.BeginForm("EditCare", "Admin", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+    @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.ID_care)
+    <div class="form-group">
+        @Html.LabelFor(model => model.Type)
+        @Html.TextBoxFor(model => model.Type, new { @class = "form-control", @readonly = "readonly" })
+        @Html.ValidationMessageFor(model => model.Type)
+    </div>
+
+    <div class="form-group">
+        <strong>
+            @Html.LabelFor(model => model.Price, htmlAttributes: new { @class = "control-label", style = "font-size: 20px;" })
+        </strong>
+        <div>
+            @Html.EditorFor(model => model.Price, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        <br/>
+        <input type="submit" value="Изменить" class="btn btn-dark" />
+    </div>
+</div>
+}
+
+<div>
+    <br />
+    @Html.ActionLink("Назад", "ListOFCare")
+</div>

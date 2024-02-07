@@ -1,0 +1,54 @@
+﻿@{Layout = null;}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="~/Content/style.css"/>
+    <title>DomicLapushek</title>
+</head>
+<body>
+    <nav class="header_services">
+        <div class="header-logo">
+            <a href="@Url.Action("Index", "Home")" class="logo">
+                <strong>Домик для Лапушек</strong><small> PetHotel</small>
+            </a>
+        </div>
+        <ul class="header-menu">
+            <li class="header-menu_item"><a href="@Url.Action("ListOfCare", "Home")" class="header-menu_link">Услуги</a></li>
+            <li class="header-menu_item"><a href="@Url.Action("Contact", "Home")" class="header-menu_link">Контакты</a></li>
+            <li class="header-menu_item"><a href="@Url.Action("Login", "Authorization")" class="header-menu_link">Войти</a></li>
+        </ul>
+    </nav>
+
+
+    <main class="section_1">
+        <div class="container_1">
+            <h1 class="title-1">Контакты</h1>
+            <table>
+                <thead>
+                    <tr>
+                        <th class="contact_th">Адрес</th>
+                        <th class="contact_th">Телефон</th>
+                        <th class="contact_th">Время работы</th>
+                        <th class="contact_th">Написать нам</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="contact_td">Dubai, United Arab Emirates</td>
+                        <td class="contact_td">8-800-555 35 35</td>
+                        <td class="contact_td">Пн-Чт: 9:00 - 21:00</td>
+                        <td class="contact_td">yan28@tpu.ru</td>
+                    </tr>
+                    <tr>
+                        <td class="contact_td">14, 3 Street, Dubai Investments Park 2, Jebel Ali</td>
+                        <td class="contact_td"></td>
+                        <td class="contact_td">Пт-Вс: 10:00 - 20:00</td>
+                        <td class="contact_td"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </main>
+</body>
+</html>

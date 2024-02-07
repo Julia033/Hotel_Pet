@@ -1,0 +1,388 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Хранилище Nazarenko_IDZModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Cares">
+    <Key>
+      <PropertyRef Name="ID_care" />
+    </Key>
+    <Property Name="ID_care" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Type" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Price" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Cares_Emp">
+    <Key>
+      <PropertyRef Name="ID_emp" />
+      <PropertyRef Name="ID_care" />
+    </Key>
+    <Property Name="ID_emp" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="ID_care" Type="uniqueidentifier" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Cares_Titles">
+    <Key>
+      <PropertyRef Name="ID_title" />
+      <PropertyRef Name="ID_care" />
+    </Key>
+    <Property Name="ID_title" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="ID_care" Type="uniqueidentifier" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Customers">
+    <Key>
+      <PropertyRef Name="ID_customer" />
+    </Key>
+    <Property Name="ID_customer" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Last_name" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="First_name" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Patronymic" Type="varchar" MaxLength="50" />
+    <Property Name="Phone" Type="bigint" Nullable="false" />
+    <Property Name="Amount_deposited" Type="int" />
+  </EntityType>
+  <EntityType Name="Emp_Titles">
+    <Key>
+      <PropertyRef Name="ID_emp" />
+      <PropertyRef Name="ID_title" />
+    </Key>
+    <Property Name="ID_emp" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="ID_title" Type="uniqueidentifier" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Employees">
+    <Key>
+      <PropertyRef Name="ID_emp" />
+    </Key>
+    <Property Name="ID_emp" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Last_name" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="First_name" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Patronymic" Type="varchar" MaxLength="50" />
+    <Property Name="Phone" Type="bigint" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Habitation">
+    <Key>
+      <PropertyRef Name="ID_list" />
+    </Key>
+    <Property Name="ID_list" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Date_arrival" Type="date" Nullable="false" />
+    <Property Name="Date_leaving" Type="date" />
+    <Property Name="ID_pet" Type="uniqueidentifier" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Journal">
+    <Key>
+      <PropertyRef Name="ID_pet" />
+      <PropertyRef Name="ID_care" />
+    </Key>
+    <Property Name="ID_pet" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="ID_care" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Date_care" Type="date" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Pets">
+    <Key>
+      <PropertyRef Name="ID_pet" />
+    </Key>
+    <Property Name="ID_pet" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Nickname" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Type" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="ID_customer" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Number_room" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Role">
+    <Key>
+      <PropertyRef Name="RoleCode" />
+    </Key>
+    <Property Name="RoleCode" Type="int" Nullable="false" />
+    <Property Name="RoleName" Type="varchar" MaxLength="20" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Rooms">
+    <Key>
+      <PropertyRef Name="Number_room" />
+    </Key>
+    <Property Name="Number_room" Type="int" Nullable="false" />
+    <Property Name="Price" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Titles">
+    <Key>
+      <PropertyRef Name="ID_title" />
+    </Key>
+    <Property Name="ID_title" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Title" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Salary" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Login" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="PasswordHash" Type="varchar" MaxLength="200" Nullable="false" />
+    <Property Name="Salt" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="UserRole" Type="int" Nullable="false" />
+  </EntityType>
+  <!--Ошибки, обнаруженные при создании:
+предупреждение 6002: В таблице или представлении "Nazarenko_IDZ.dbo.CustomerPayments" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
+  <EntityType Name="CustomerPayments">
+    <Key>
+      <PropertyRef Name="ID владельца" />
+      <PropertyRef Name="Фамилия" />
+      <PropertyRef Name="Имя" />
+    </Key>
+    <Property Name="ID владельца" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Фамилия" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Имя" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Отчество" Type="varchar" MaxLength="50" />
+    <Property Name="Итоговая стоимость" Type="int" />
+    <Property Name="Внесенная сумма" Type="int" />
+    <Property Name="Осталось внести" Type="int" />
+  </EntityType>
+  <!--Ошибки, обнаруженные при создании:
+предупреждение 6002: В таблице или представлении "Nazarenko_IDZ.dbo.Information_pet" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
+  <EntityType Name="Information_pet">
+    <Key>
+      <PropertyRef Name="Кличка питомца" />
+      <PropertyRef Name="Номер комнаты проживания" />
+      <PropertyRef Name="Дата заезда" />
+      <PropertyRef Name="Оказанная услуга" />
+    </Key>
+    <Property Name="Кличка питомца" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Номер комнаты проживания" Type="int" Nullable="false" />
+    <Property Name="Дата заезда" Type="date" Nullable="false" />
+    <Property Name="Оказанная услуга" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Сотрудник" Type="varchar" MaxLength="152" />
+  </EntityType>
+  <Association Name="Care_Journal">
+    <End Role="Cares" Type="Self.Cares" Multiplicity="1" />
+    <End Role="Journal" Type="Self.Journal" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cares">
+        <PropertyRef Name="ID_care" />
+      </Principal>
+      <Dependent Role="Journal">
+        <PropertyRef Name="ID_care" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="Cares_Emp_Cares">
+    <End Role="Cares" Type="Self.Cares" Multiplicity="1" />
+    <End Role="Cares_Emp" Type="Self.Cares_Emp" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cares">
+        <PropertyRef Name="ID_care" />
+      </Principal>
+      <Dependent Role="Cares_Emp">
+        <PropertyRef Name="ID_care" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="Cares_Emp_Emp">
+    <End Role="Employees" Type="Self.Employees" Multiplicity="1" />
+    <End Role="Cares_Emp" Type="Self.Cares_Emp" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employees">
+        <PropertyRef Name="ID_emp" />
+      </Principal>
+      <Dependent Role="Cares_Emp">
+        <PropertyRef Name="ID_emp" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="Cares_Titles_Cares">
+    <End Role="Cares" Type="Self.Cares" Multiplicity="1" />
+    <End Role="Cares_Titles" Type="Self.Cares_Titles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cares">
+        <PropertyRef Name="ID_care" />
+      </Principal>
+      <Dependent Role="Cares_Titles">
+        <PropertyRef Name="ID_care" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="Cares_Titles_Titles">
+    <End Role="Titles" Type="Self.Titles" Multiplicity="1" />
+    <End Role="Cares_Titles" Type="Self.Cares_Titles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Titles">
+        <PropertyRef Name="ID_title" />
+      </Principal>
+      <Dependent Role="Cares_Titles">
+        <PropertyRef Name="ID_title" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="Customers_Pets">
+    <End Role="Customers" Type="Self.Customers" Multiplicity="1" />
+    <End Role="Pets" Type="Self.Pets" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customers">
+        <PropertyRef Name="ID_customer" />
+      </Principal>
+      <Dependent Role="Pets">
+        <PropertyRef Name="ID_customer" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="Emp_Titles_Emp">
+    <End Role="Employees" Type="Self.Employees" Multiplicity="1" />
+    <End Role="Emp_Titles" Type="Self.Emp_Titles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employees">
+        <PropertyRef Name="ID_emp" />
+      </Principal>
+      <Dependent Role="Emp_Titles">
+        <PropertyRef Name="ID_emp" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="Emp_Titles_Titles">
+    <End Role="Titles" Type="Self.Titles" Multiplicity="1" />
+    <End Role="Emp_Titles" Type="Self.Emp_Titles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Titles">
+        <PropertyRef Name="ID_title" />
+      </Principal>
+      <Dependent Role="Emp_Titles">
+        <PropertyRef Name="ID_title" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_User_Role">
+    <End Role="Role" Type="Self.Role" Multiplicity="1" />
+    <End Role="User" Type="Self.User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Role">
+        <PropertyRef Name="RoleCode" />
+      </Principal>
+      <Dependent Role="User">
+        <PropertyRef Name="UserRole" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="Pets_Habitation">
+    <End Role="Pets" Type="Self.Pets" Multiplicity="1" />
+    <End Role="Habitation" Type="Self.Habitation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Pets">
+        <PropertyRef Name="ID_pet" />
+      </Principal>
+      <Dependent Role="Habitation">
+        <PropertyRef Name="ID_pet" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="Pets_Journal">
+    <End Role="Pets" Type="Self.Pets" Multiplicity="1" />
+    <End Role="Journal" Type="Self.Journal" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Pets">
+        <PropertyRef Name="ID_pet" />
+      </Principal>
+      <Dependent Role="Journal">
+        <PropertyRef Name="ID_pet" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="Rooms_Pets">
+    <End Role="Rooms" Type="Self.Rooms" Multiplicity="1" />
+    <End Role="Pets" Type="Self.Pets" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Rooms">
+        <PropertyRef Name="Number_room" />
+      </Principal>
+      <Dependent Role="Pets">
+        <PropertyRef Name="Number_room" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="Output_pet" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Last_name" Type="nvarchar" Mode="In" />
+    <Parameter Name="First_name" Type="nvarchar" Mode="In" />
+    <Parameter Name="Patronymic" Type="nvarchar" Mode="In" />
+    <Parameter Name="Nickname" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="Update_date_leaving" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ID_pet" Type="uniqueidentifier" Mode="In" />
+    <Parameter Name="Date_leaving" Type="date" Mode="In" />
+  </Function>
+  <Function Name="UpdateAmountDeposited" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="customer_ID" Type="uniqueidentifier" Mode="In" />
+    <Parameter Name="depositAmount" Type="decimal" Mode="In" />
+  </Function>
+  <EntityContainer Name="Хранилище Nazarenko_IDZModelContainer">
+    <EntitySet Name="Cares" EntityType="Self.Cares" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Cares_Emp" EntityType="Self.Cares_Emp" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Cares_Titles" EntityType="Self.Cares_Titles" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Customers" EntityType="Self.Customers" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Emp_Titles" EntityType="Self.Emp_Titles" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Employees" EntityType="Self.Employees" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Habitation" EntityType="Self.Habitation" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Journal" EntityType="Self.Journal" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Pets" EntityType="Self.Pets" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Rooms" EntityType="Self.Rooms" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Titles" EntityType="Self.Titles" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CustomerPayments" EntityType="Self.CustomerPayments" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [CustomerPayments].[ID владельца] AS [ID владельца], 
+    [CustomerPayments].[Фамилия] AS [Фамилия], 
+    [CustomerPayments].[Имя] AS [Имя], 
+    [CustomerPayments].[Отчество] AS [Отчество], 
+    [CustomerPayments].[Итоговая стоимость] AS [Итоговая стоимость], 
+    [CustomerPayments].[Внесенная сумма] AS [Внесенная сумма], 
+    [CustomerPayments].[Осталось внести] AS [Осталось внести]
+    FROM [dbo].[CustomerPayments] AS [CustomerPayments]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="Information_pet" EntityType="Self.Information_pet" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [Information_pet].[Кличка питомца] AS [Кличка питомца], 
+    [Information_pet].[Номер комнаты проживания] AS [Номер комнаты проживания], 
+    [Information_pet].[Дата заезда] AS [Дата заезда], 
+    [Information_pet].[Оказанная услуга] AS [Оказанная услуга], 
+    [Information_pet].[Сотрудник] AS [Сотрудник]
+    FROM [dbo].[Information_pet] AS [Information_pet]</DefiningQuery>
+    </EntitySet>
+    <AssociationSet Name="Care_Journal" Association="Self.Care_Journal">
+      <End Role="Cares" EntitySet="Cares" />
+      <End Role="Journal" EntitySet="Journal" />
+    </AssociationSet>
+    <AssociationSet Name="Cares_Emp_Cares" Association="Self.Cares_Emp_Cares">
+      <End Role="Cares" EntitySet="Cares" />
+      <End Role="Cares_Emp" EntitySet="Cares_Emp" />
+    </AssociationSet>
+    <AssociationSet Name="Cares_Emp_Emp" Association="Self.Cares_Emp_Emp">
+      <End Role="Employees" EntitySet="Employees" />
+      <End Role="Cares_Emp" EntitySet="Cares_Emp" />
+    </AssociationSet>
+    <AssociationSet Name="Cares_Titles_Cares" Association="Self.Cares_Titles_Cares">
+      <End Role="Cares" EntitySet="Cares" />
+      <End Role="Cares_Titles" EntitySet="Cares_Titles" />
+    </AssociationSet>
+    <AssociationSet Name="Cares_Titles_Titles" Association="Self.Cares_Titles_Titles">
+      <End Role="Titles" EntitySet="Titles" />
+      <End Role="Cares_Titles" EntitySet="Cares_Titles" />
+    </AssociationSet>
+    <AssociationSet Name="Customers_Pets" Association="Self.Customers_Pets">
+      <End Role="Customers" EntitySet="Customers" />
+      <End Role="Pets" EntitySet="Pets" />
+    </AssociationSet>
+    <AssociationSet Name="Emp_Titles_Emp" Association="Self.Emp_Titles_Emp">
+      <End Role="Employees" EntitySet="Employees" />
+      <End Role="Emp_Titles" EntitySet="Emp_Titles" />
+    </AssociationSet>
+    <AssociationSet Name="Emp_Titles_Titles" Association="Self.Emp_Titles_Titles">
+      <End Role="Titles" EntitySet="Titles" />
+      <End Role="Emp_Titles" EntitySet="Emp_Titles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_User_Role" Association="Self.FK_User_Role">
+      <End Role="Role" EntitySet="Role" />
+      <End Role="User" EntitySet="User" />
+    </AssociationSet>
+    <AssociationSet Name="Pets_Habitation" Association="Self.Pets_Habitation">
+      <End Role="Pets" EntitySet="Pets" />
+      <End Role="Habitation" EntitySet="Habitation" />
+    </AssociationSet>
+    <AssociationSet Name="Pets_Journal" Association="Self.Pets_Journal">
+      <End Role="Pets" EntitySet="Pets" />
+      <End Role="Journal" EntitySet="Journal" />
+    </AssociationSet>
+    <AssociationSet Name="Rooms_Pets" Association="Self.Rooms_Pets">
+      <End Role="Rooms" EntitySet="Rooms" />
+      <End Role="Pets" EntitySet="Pets" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

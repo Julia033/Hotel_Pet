@@ -1,0 +1,53 @@
+﻿@model Hotel_Pet.Models.ViewModel.PetVM
+
+<h2>Редактировать питомца</h2>
+
+@using (Html.BeginForm("EditPet", "Admin", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    @Html.HiddenFor(model => model.ID_pet)
+    <div class="form-group">
+        @Html.LabelFor(model => model.Nickname)
+        @Html.TextBoxFor(model => model.Nickname, new { @class = "form-control", @readonly = "readonly" })
+        @Html.ValidationMessageFor(model => model.Nickname)
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Type)
+        @Html.TextBoxFor(model => model.Type, new { @class = "form-control", @readonly = "readonly" })
+        @Html.ValidationMessageFor(model => model.Type)
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Number_room)
+        @Html.TextBoxFor(model => model.Number_room, new { @class = "form-control", @readonly = "readonly" })
+        @Html.ValidationMessageFor(model => model.Number_room)
+
+    </div>
+
+    <div class="form-group">
+        <h4>Информация о проживании:</h4>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Date_arrival)
+            @Html.TextBoxFor(model => model.Date_arrival, "{0:yyyy-MM-dd}", new { @class = "form-control date-picker", type = "date", @readonly = "readonly" })
+            @Html.ValidationMessageFor(model => model.Date_arrival)
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Date_leaving)
+            @Html.TextBoxFor(model => model.Date_leaving, "{0:yyyy-MM-dd}", new { @class = "form-control date-picker", type = "date" })
+            @Html.ValidationMessageFor(model => model.Date_leaving)
+        </div>
+    </div>
+
+    <div class="form-group">
+        <br/>
+        <input type="submit" value="Изменить" class="btn btn-dark" />
+    </div>
+}
+
+<div>
+    <br />
+    @Html.ActionLink("Отмена", "ListOfPets")
+</div>

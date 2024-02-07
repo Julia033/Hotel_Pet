@@ -1,0 +1,26 @@
+﻿@model Hotel_Pet.Models.ViewModel.CareVM
+
+<h2>Новая услуга</h2>
+
+@using (Html.BeginForm("CreateCare", "Admin", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+    <hr />
+    @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+    <label for="Type">Название услуги</label>
+    <input class="form-control text-box single-line" id="Type" name="Type" required type="text" value="">
+    <label for="Price">Цена</label>
+    <input class="form-control text-box single-line" id="Price" name="Price" required type="number" value="">
+    <br />
+    <div class="form-group">
+        <input type="submit" value="Добавить" class="btn btn-dark" />
+    </div>
+</div>
+}
+
+<div>
+    <br />
+    @Html.ActionLink("Назад", "Choice")
+</div>

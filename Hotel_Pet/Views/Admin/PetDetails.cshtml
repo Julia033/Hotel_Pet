@@ -1,0 +1,71 @@
+﻿@model Hotel_Pet.Models.ViewModel.PetDetails
+
+<h2>@Html.DisplayFor(model => model.Nickname)</h2>
+
+<div>
+    <h4>@Html.DisplayFor(model => model.Type)</h4>
+
+    <hr />
+
+
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Nickname)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nickname)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Customer_FIO)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Customer_FIO)
+        </dd>
+
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Number_room)
+
+        <dd>
+            @Html.DisplayFor(model => model.Number_room)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Customer_Phone)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Customer_Phone)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Date_arrival)
+        </dt>
+
+        <dd>
+            @Model.Date_arrival.ToString("dd.MM.yyyy")
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Date_leaving)
+        </dt>
+
+        <dd>
+            @if (Model.Date_leaving == DateTime.MinValue)
+            {
+                <p>Неопределено</p>
+            }
+            else
+            {
+                <p>@Model.Date_leaving.ToString("dd.MM.yyyy")</p>
+            }
+        </dd>
+    </dl>
+</div>
+<div>
+    <br />
+    @Html.ActionLink("Назад", "ListOfPets")
+</div>

@@ -1,0 +1,50 @@
+﻿@{Layout = null;}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="~/Content/style.css" />
+    <title>DomicLapushek</title>
+</head>
+<body>
+    <nav class="header_services">
+        <div class="header-logo">
+            <a href="@Url.Action("Index", "Home")" class="logo">
+                <strong>Домик для Лапушек</strong><small> PetHotel</small>
+            </a>
+        </div>
+        <ul class="header-menu">
+            <li class="header-menu_item"><a href="@Url.Action("ListOfCare", "Home")" class="header-menu_link">Услуги</a></li>
+            <li class="header-menu_item"><a href="@Url.Action("Contact", "Home")" class="header-menu_link">Контакты</a></li>
+            <li class="header-menu_item"><a href="@Url.Action("Login", "Authorization")" class="header-menu_link">Войти</a></li>
+
+        </ul>
+    </nav>
+
+    <main class="slogan">
+        <div class="container">
+            <div class="text_slogan">
+                <h2>Забота и Уют встречаются с Вашими Любимцами!</h2>
+                <p>Добро пожаловать в наше уютное место для ваших любимцев! В Домике для Лапушек ценится забота в атмосфере непринужденности и дружелюбия. У нас создана неформальная обстановка, где главное внимание уделяется счастью и благополучию наших посетителей.</p>
+            </div>
+            <div class="image_slogan">
+                <img src="../img/Cats.png" alt="Изображение гостиницы для животных" width="600" height="500">
+            </div>
+        </div>
+
+
+        <div class="comfort">
+            <div class="comfort_back">
+                <div class="image_slogan">
+                    <img src="../img/Gosling.jpg" alt="Изображение гостиницы для животных" width="600" height="500">
+                </div>
+                <div class="text_comfort">
+                    <h3>Роскошь, Комфорт, Качество</h3>
+                    <p class="paragraph">В нашем уникальном отеле для домашних питомцев мы стремимся предоставить превосходное качество проживания. Наш персонал не только профессионален, но и обладает настоящей страстью и глубокими знаниями в области ухода за животными.</p1>
+                    <p class="paragraph">Мы гордимся тем, каким образом мы заботимся о каждом госте, и считаем, что предоставление должного внимания является неотъемлемой частью нашей миссии. У нас каждый питомец находится под пристальным вниманием, чтобы его пребывание было не только комфортным, но и наполненным радостью и положительными впечатлениями.</p2>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

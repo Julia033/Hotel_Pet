@@ -1,0 +1,17 @@
+﻿@model Hotel_Pet.Models.Pet
+
+<h2>Удаление питомца</h2>
+
+<p>
+    Вы уверены, что хотите удалить питомца с именем: <strong>@Model.Nickname</strong>?
+</p>
+
+@using (Html.BeginForm("DeletePet", "Admin", new { ID_pet = Model.ID_pet }, FormMethod.Post, new { id = "deleteForm" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-actions no-color">
+        <input type="button" value="Удалить" class="btn btn-danger" onclick="showConfirmation()" />
+        @Html.ActionLink("Отмена", "ListOfPets", null, new { @class = "btn btn-dark" })
+    </div>
+}

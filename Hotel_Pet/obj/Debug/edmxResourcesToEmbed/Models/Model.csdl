@@ -1,0 +1,293 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Nazarenko_IDZModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Care">
+    <Key>
+      <PropertyRef Name="ID_care" />
+    </Key>
+    <Property Name="ID_care" Type="Guid" Nullable="false" />
+    <Property Name="Type" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Price" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Journals" Relationship="Self.Care_Journal" FromRole="Cares" ToRole="Journal" />
+    <NavigationProperty Name="Employees" Relationship="Self.Cares_Emp" FromRole="Cares" ToRole="Employees" />
+    <NavigationProperty Name="Titles" Relationship="Self.Cares_Titles" FromRole="Cares" ToRole="Titles" />
+  </EntityType>
+  <EntityType Name="Customer">
+    <Key>
+      <PropertyRef Name="ID_customer" />
+    </Key>
+    <Property Name="ID_customer" Type="Guid" Nullable="false" />
+    <Property Name="Last_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="First_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Patronymic" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Phone" Type="Int64" Nullable="false" />
+    <Property Name="Amount_deposited" Type="Int32" />
+    <NavigationProperty Name="Pets" Relationship="Self.Customers_Pets" FromRole="Customers" ToRole="Pets" />
+  </EntityType>
+  <EntityType Name="Employee">
+    <Key>
+      <PropertyRef Name="ID_emp" />
+    </Key>
+    <Property Name="ID_emp" Type="Guid" Nullable="false" />
+    <Property Name="Last_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="First_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Patronymic" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Phone" Type="Int64" Nullable="false" />
+    <NavigationProperty Name="Cares" Relationship="Self.Cares_Emp" FromRole="Employees" ToRole="Cares" />
+    <NavigationProperty Name="Titles" Relationship="Self.Emp_Titles" FromRole="Employees" ToRole="Titles" />
+  </EntityType>
+  <EntityType Name="Habitation">
+    <Key>
+      <PropertyRef Name="ID_list" />
+    </Key>
+    <Property Name="ID_list" Type="Guid" Nullable="false" />
+    <Property Name="Date_arrival" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Date_leaving" Type="DateTime" Precision="0" />
+    <Property Name="ID_pet" Type="Guid" Nullable="false" />
+    <NavigationProperty Name="Pet" Relationship="Self.Pets_Habitation" FromRole="Habitation" ToRole="Pets" />
+  </EntityType>
+  <EntityType Name="Journal">
+    <Key>
+      <PropertyRef Name="ID_pet" />
+      <PropertyRef Name="ID_care" />
+    </Key>
+    <Property Name="ID_pet" Type="Guid" Nullable="false" />
+    <Property Name="ID_care" Type="Guid" Nullable="false" />
+    <Property Name="Date_care" Type="DateTime" Nullable="false" Precision="0" />
+    <NavigationProperty Name="Care" Relationship="Self.Care_Journal" FromRole="Journal" ToRole="Cares" />
+    <NavigationProperty Name="Pet" Relationship="Self.Pets_Journal" FromRole="Journal" ToRole="Pets" />
+  </EntityType>
+  <EntityType Name="Pet">
+    <Key>
+      <PropertyRef Name="ID_pet" />
+    </Key>
+    <Property Name="ID_pet" Type="Guid" Nullable="false" />
+    <Property Name="Nickname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Type" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="ID_customer" Type="Guid" Nullable="false" />
+    <Property Name="Number_room" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Customer" Relationship="Self.Customers_Pets" FromRole="Pets" ToRole="Customers" />
+    <NavigationProperty Name="Habitations" Relationship="Self.Pets_Habitation" FromRole="Pets" ToRole="Habitation" />
+    <NavigationProperty Name="Journals" Relationship="Self.Pets_Journal" FromRole="Pets" ToRole="Journal" />
+    <NavigationProperty Name="Room" Relationship="Self.Rooms_Pets" FromRole="Pets" ToRole="Rooms" />
+  </EntityType>
+  <EntityType Name="Room">
+    <Key>
+      <PropertyRef Name="Number_room" />
+    </Key>
+    <Property Name="Number_room" Type="Int32" Nullable="false" />
+    <Property Name="Price" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Pets" Relationship="Self.Rooms_Pets" FromRole="Rooms" ToRole="Pets" />
+  </EntityType>
+  <EntityType Name="Title">
+    <Key>
+      <PropertyRef Name="ID_title" />
+    </Key>
+    <Property Name="ID_title" Type="Guid" Nullable="false" />
+    <Property Name="Title1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Salary" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Cares" Relationship="Self.Cares_Titles" FromRole="Titles" ToRole="Cares" />
+    <NavigationProperty Name="Employees" Relationship="Self.Emp_Titles" FromRole="Titles" ToRole="Employees" />
+  </EntityType>
+  <Association Name="Care_Journal">
+    <End Role="Cares" Type="Self.Care" Multiplicity="1" />
+    <End Role="Journal" Type="Self.Journal" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cares">
+        <PropertyRef Name="ID_care" />
+      </Principal>
+      <Dependent Role="Journal">
+        <PropertyRef Name="ID_care" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="Customers_Pets">
+    <End Role="Customers" Type="Self.Customer" Multiplicity="1" />
+    <End Role="Pets" Type="Self.Pet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customers">
+        <PropertyRef Name="ID_customer" />
+      </Principal>
+      <Dependent Role="Pets">
+        <PropertyRef Name="ID_customer" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="Pets_Habitation">
+    <End Role="Pets" Type="Self.Pet" Multiplicity="1" />
+    <End Role="Habitation" Type="Self.Habitation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Pets">
+        <PropertyRef Name="ID_pet" />
+      </Principal>
+      <Dependent Role="Habitation">
+        <PropertyRef Name="ID_pet" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="Pets_Journal">
+    <End Role="Pets" Type="Self.Pet" Multiplicity="1" />
+    <End Role="Journal" Type="Self.Journal" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Pets">
+        <PropertyRef Name="ID_pet" />
+      </Principal>
+      <Dependent Role="Journal">
+        <PropertyRef Name="ID_pet" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="Rooms_Pets">
+    <End Role="Rooms" Type="Self.Room" Multiplicity="1" />
+    <End Role="Pets" Type="Self.Pet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Rooms">
+        <PropertyRef Name="Number_room" />
+      </Principal>
+      <Dependent Role="Pets">
+        <PropertyRef Name="Number_room" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="Cares_Emp">
+    <End Role="Cares" Type="Self.Care" Multiplicity="*" />
+    <End Role="Employees" Type="Self.Employee" Multiplicity="*" />
+  </Association>
+  <Association Name="Cares_Titles">
+    <End Role="Cares" Type="Self.Care" Multiplicity="*" />
+    <End Role="Titles" Type="Self.Title" Multiplicity="*" />
+  </Association>
+  <Association Name="Emp_Titles">
+    <End Role="Employees" Type="Self.Employee" Multiplicity="*" />
+    <End Role="Titles" Type="Self.Title" Multiplicity="*" />
+  </Association>
+  <EntityContainer Name="Nazarenko_IDZEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Cares" EntityType="Self.Care" />
+    <EntitySet Name="Customers" EntityType="Self.Customer" />
+    <EntitySet Name="Employees" EntityType="Self.Employee" />
+    <EntitySet Name="Habitations" EntityType="Self.Habitation" />
+    <EntitySet Name="Journals" EntityType="Self.Journal" />
+    <EntitySet Name="Pets" EntityType="Self.Pet" />
+    <EntitySet Name="Rooms" EntityType="Self.Room" />
+    <EntitySet Name="Titles" EntityType="Self.Title" />
+    <AssociationSet Name="Care_Journal" Association="Self.Care_Journal">
+      <End Role="Cares" EntitySet="Cares" />
+      <End Role="Journal" EntitySet="Journals" />
+    </AssociationSet>
+    <AssociationSet Name="Customers_Pets" Association="Self.Customers_Pets">
+      <End Role="Customers" EntitySet="Customers" />
+      <End Role="Pets" EntitySet="Pets" />
+    </AssociationSet>
+    <AssociationSet Name="Pets_Habitation" Association="Self.Pets_Habitation">
+      <End Role="Pets" EntitySet="Pets" />
+      <End Role="Habitation" EntitySet="Habitations" />
+    </AssociationSet>
+    <AssociationSet Name="Pets_Journal" Association="Self.Pets_Journal">
+      <End Role="Pets" EntitySet="Pets" />
+      <End Role="Journal" EntitySet="Journals" />
+    </AssociationSet>
+    <AssociationSet Name="Rooms_Pets" Association="Self.Rooms_Pets">
+      <End Role="Rooms" EntitySet="Rooms" />
+      <End Role="Pets" EntitySet="Pets" />
+    </AssociationSet>
+    <AssociationSet Name="Cares_Emp" Association="Self.Cares_Emp">
+      <End Role="Cares" EntitySet="Cares" />
+      <End Role="Employees" EntitySet="Employees" />
+    </AssociationSet>
+    <AssociationSet Name="Cares_Titles" Association="Self.Cares_Titles">
+      <End Role="Cares" EntitySet="Cares" />
+      <End Role="Titles" EntitySet="Titles" />
+    </AssociationSet>
+    <AssociationSet Name="Emp_Titles" Association="Self.Emp_Titles">
+      <End Role="Employees" EntitySet="Employees" />
+      <End Role="Titles" EntitySet="Titles" />
+    </AssociationSet>
+    <FunctionImport Name="Output_pet" ReturnType="Collection(Nazarenko_IDZModel.Output_pet_Result)">
+      <Parameter Name="Last_name" Mode="In" Type="String" />
+      <Parameter Name="First_name" Mode="In" Type="String" />
+      <Parameter Name="Patronymic" Mode="In" Type="String" />
+      <Parameter Name="Nickname" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="Update_date_leaving">
+      <Parameter Name="ID_pet" Mode="In" Type="Guid" />
+      <Parameter Name="Date_leaving" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="UpdateAmountDeposited">
+      <Parameter Name="customer_ID" Mode="In" Type="Guid" />
+      <Parameter Name="depositAmount" Mode="In" Type="Decimal" />
+    </FunctionImport>
+    <EntitySet Name="Roles" EntityType="Nazarenko_IDZModel.Role" />
+    <EntitySet Name="Users" EntityType="Nazarenko_IDZModel.User" />
+    <AssociationSet Name="FK_User_Role" Association="Nazarenko_IDZModel.FK_User_Role">
+      <End Role="Role" EntitySet="Roles" />
+      <End Role="User" EntitySet="Users" />
+    </AssociationSet>
+    <EntitySet Name="CustomerPayments" EntityType="Nazarenko_IDZModel.CustomerPayment" />
+    <EntitySet Name="Information_pet" EntityType="Nazarenko_IDZModel.Information_pet" />
+  </EntityContainer>
+  <ComplexType Name="Output_pet_Result">
+    <Property Type="String" Name="Кличка_питомца" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="Владелец" Nullable="false" MaxLength="101" />
+    <Property Type="Int32" Name="Номер_комнаты_проживания" Nullable="false" />
+    <Property Type="String" Name="Оказанная_услуга" Nullable="false" MaxLength="50" />
+    <Property Type="DateTime" Name="Дата_оказания_услуги" Nullable="false" />
+    <Property Type="String" Name="Сотрудник" Nullable="true" MaxLength="152" />
+  </ComplexType>
+  <EntityType Name="Role">
+    <Key>
+      <PropertyRef Name="RoleCode" />
+    </Key>
+    <Property Name="RoleCode" Type="Int32" Nullable="false" />
+    <Property Name="RoleName" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Users" Relationship="Nazarenko_IDZModel.FK_User_Role" FromRole="Role" ToRole="User" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Guid" Nullable="false" />
+    <Property Name="Login" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="PasswordHash" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="Salt" Type="Guid" Nullable="false" />
+    <Property Name="UserRole" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Role" Relationship="Nazarenko_IDZModel.FK_User_Role" FromRole="User" ToRole="Role" />
+  </EntityType>
+  <Association Name="FK_User_Role">
+    <End Type="Nazarenko_IDZModel.Role" Role="Role" Multiplicity="1" />
+    <End Type="Nazarenko_IDZModel.User" Role="User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Role">
+        <PropertyRef Name="RoleCode" />
+      </Principal>
+      <Dependent Role="User">
+        <PropertyRef Name="UserRole" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="CustomerPayment">
+    <Key>
+      <PropertyRef Name="ID_владельца" />
+      <PropertyRef Name="Фамилия" />
+      <PropertyRef Name="Имя" />
+    </Key>
+    <Property Name="ID_владельца" Type="Guid" Nullable="false" />
+    <Property Name="Фамилия" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Имя" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Отчество" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Итоговая_стоимость" Type="Int32" />
+    <Property Name="Внесенная_сумма" Type="Int32" />
+    <Property Name="Осталось_внести" Type="Int32" />
+  </EntityType>
+  <EntityType Name="Information_pet">
+    <Key>
+      <PropertyRef Name="Кличка_питомца" />
+      <PropertyRef Name="Номер_комнаты_проживания" />
+      <PropertyRef Name="Дата_заезда" />
+      <PropertyRef Name="Оказанная_услуга" />
+    </Key>
+    <Property Name="Кличка_питомца" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Номер_комнаты_проживания" Type="Int32" Nullable="false" />
+    <Property Name="Дата_заезда" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Оказанная_услуга" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Сотрудник" Type="String" MaxLength="152" FixedLength="false" Unicode="false" />
+  </EntityType>
+</Schema>

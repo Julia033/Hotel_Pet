@@ -1,0 +1,34 @@
+﻿﻿@model List<Hotel_Pet.Models.Pet>
+
+
+<h2>Список питомцев:</h2>
+<br />
+
+
+<table class="table table-striped">
+
+    <thead>
+
+        <tr>
+            <th class="text-center">Кличка</th>
+            <th class="text-center">Вид</th>
+            <th class="text-center">Комната</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var Pets in Model)
+        {
+            <tr class="text-center">
+                <td>@Html.ActionLink(Pets.Nickname, "PetDetails", "Admin", new { ID_pet = Pets.ID_pet }, null)</td>
+                <td>@Pets.Type</td>
+                <td>@Pets.Number_room</td>
+                <td>@Html.ActionLink("Изменить", "EditPet", new { controller = "Admin", ID_pet = Pets.ID_pet }, null)</td>
+                <td>@Html.ActionLink("Удалить", "DeletePet", new { controller = "Admin", ID_pet = Pets.ID_pet }, null)</td>
+            </tr>
+        }
+    </tbody>
+</table>
+<div>
+    <br />
+    @Html.ActionLink("Назад", "Choice")
+</div>

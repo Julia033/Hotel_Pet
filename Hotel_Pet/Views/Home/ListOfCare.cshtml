@@ -1,0 +1,49 @@
+﻿@model List<Hotel_Pet.Models.Care>
+@{Layout = null;}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="~/Content/style.css" />
+    <title>DomicLapushek</title>
+</head>
+<body>
+    <nav class="header_services">
+        <div class="header-logo">
+            <a href="@Url.Action("Index", "Home")" class="logo">
+                <strong>Домик для Лапушек</strong><small> PetHotel</small>
+            </a>
+        </div>
+        <ul class="header-menu">
+            <li class="header-menu_item"><a href="@Url.Action("ListOfCare", "Home")" class="header-menu_link">Услуги</a></li>
+            <li class="header-menu_item"><a href="@Url.Action("Contact", "Home")" class="header-menu_link">Контакты</a></li>
+            <li class="header-menu_item"><a href="@Url.Action("Login", "Authorization")" class="header-menu_link">Войти</a></li>
+        </ul>
+    </nav>
+
+
+    <main class="section">
+        <div class="container_1">
+            <h1 class="title-1">Таблица услуг</h1>
+            <table>
+                <thead>
+                    <tr>
+                        <th class="services_th">Услуга</th>
+                        <th class="services_th">Цена</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var care in Model)
+                    {
+                        <tr>
+                            <td class="services_td">@care.Type </td>
+                            <td class="services_td">@care.Price рублей </td>
+                        </tr>
+                    }
+                   
+                </tbody>
+            </table>
+        </div>
+    </main>
+</body>
+</html>

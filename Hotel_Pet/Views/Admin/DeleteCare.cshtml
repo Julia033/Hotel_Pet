@@ -1,0 +1,38 @@
+﻿@model Hotel_Pet.Models.Care
+
+
+<h3>Вы уверены, что хотите удалить эту услугу?</h3>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt style="font-size: 20px;">
+            @Html.DisplayNameFor(model => model.Type)
+        </dt>
+
+        <dd style="font-size: 20px;">
+            @Html.DisplayFor(model => model.Type)
+        </dd>
+
+        <dt style="font-size: 20px;">
+            @Html.DisplayNameFor(model => model.Price)
+        </dt>
+
+        <dd style="font-size: 20px;">
+            @Html.DisplayFor(model => model.Price)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+<div class="form-actions no-color">
+    <div class="form-group">
+        <input type="submit" value="Удалить" class="btn btn-dark" />
+    </div>
+    <br />
+    @Html.ActionLink("Назад", "ListOFCare")
+</div>
+    }
+</div>

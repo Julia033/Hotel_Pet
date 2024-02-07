@@ -1,0 +1,57 @@
+﻿@model Hotel_Pet.Models.ViewModel.PetVM
+
+<h2>Новая питомец</h2>
+
+@using (Html.BeginForm("CreatePet", "Admin", FormMethod.Post, new { @class = "my-form" }))
+{
+    @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+
+    <label for="Nickname">Кличка питомца</label>
+    <input class="form-control text-box single-line" id="Nickname" name="Nickname" required type="text" value="">
+
+    <label for="Type">Вид питомца</label>
+    <input class="form-control text-box single-line" id="Type" name="Type" required type="text" value="">
+
+    <div class="form-group">
+            @Html.LabelFor(model => model.Number_room)
+            @Html.DropDownListFor(model => model.Number_room, new SelectList(Model.AvailableRooms), "Выберите номер комнаты", new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Number_room)
+        </div>
+
+
+    <div>
+        <h4>Информация о владельце:</h4>
+        <label for="Customer_LastName">Фамилия</label>
+        <input class="form-control text-box single-line" id="Customer_LastName" name="Customer_LastName" required type="text" value="">
+
+        <label for="Customer_FirstName">Имя</label>
+        <input class="form-control text-box single-line" id="Customer_FirstName" name="Customer_FirstName" required type="text" value="">
+
+        <label for="Customer_Patronymic">Отчество</label>
+        <input class="form-control text-box single-line" id="Customer_Patronymic" name="Customer_Patronymic" type="text" value="">
+
+        <label for="Phone">Телефон</label>
+        <input class="form-control text-box single-line" id="Phone" name="Phone" required type="tel" value="">
+    </div>
+
+    <div>
+        <h4>Информация о проживании:</h4>
+        <label for="Date_arrival">Дата заезда</label>
+        <input class="form-control dropdownlist single-line" id="Data_arrival" name="Date_arrival" required type="date" value="">
+
+        <label for="Date_leaving">Дата выезда</label>
+        <input class="form-control dropdownlist single-line" id="Date_leaving" name="Date_leaving" type="date" value="">
+
+    </div>
+
+    <br />
+    <div class="form-group">
+        <input type="submit" value="Создать питомца" class="btn btn-dark" />
+    </div>
+}
+
+
+<div>
+    <br />
+    @Html.ActionLink("Назад", "Choice")
+</div>
